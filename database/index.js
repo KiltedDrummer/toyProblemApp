@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/rsvp');
+require('dotenv').config();
 
-const db = mongoose.connection;
+mongoose.connect(`mongodb://toyproblems:${process.env.MONGO_PW}@ds135993.mlab.com:35993/toy-problem-db`);
+db = mongoose.connection;
 
-db.on('error', () => {
+db.on('error', (err) => {
+  console.log(err);
   console.log('mongoose connection error');
 });
 
